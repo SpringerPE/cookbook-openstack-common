@@ -66,7 +66,7 @@ module ::Openstack # rubocop:disable Documentation
       case type
       when 'postgresql'
         "#{type}://#{user}:#{pass}@#{host}:#{port}/#{name}"
-      when 'mysql'
+      when 'mysql', 'percona'
         "#{type}://#{user}:#{pass}@#{host}:#{port}/#{name}?charset=utf8"
       when 'sqlite'
         # SQLite uses filepaths not db name
