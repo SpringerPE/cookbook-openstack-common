@@ -48,7 +48,7 @@ module ::Openstack # rubocop:disable Documentation
         else
           super_password = node['postgresql']['password']['postgres']
         end
-      when 'mysql'
+      when 'mysql', 'percona'
         # we have to install the 'mysql' gem, otherwise the provider won't work
         include_recipe 'database::mysql'
         db_prov = ::Chef::Provider::Database::Mysql
