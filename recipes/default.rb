@@ -25,21 +25,23 @@ when 'debian'
     options platform_options['package_overrides']
     action :upgrade
   end
-
-  if node['openstack']['apt']['live_updates_enabled']
-    apt_components = node['openstack']['apt']['components']
-    # Simple variable substitution for LSB codename and OpenStack release
-    apt_components.each do | comp |
-      comp.gsub! '%release%', node['openstack']['release']
-      comp.gsub! '%codename%', node['lsb']['codename']
-    end
-    apt_repository 'openstack-ppa' do
-      uri node['openstack']['apt']['uri']
-      components apt_components
+  if node['platform'] == 'ubuntu' && node['platform_version'] == '14.04'
+         Chef::Platform.set :platform => :ubuntu, :resource => :service, :provider => Chef::Provider::Service::Upstart
+  else
+    if node['openstack']['apt']['live_updates_enabled']
+      apt_components = node['openstack']['apt']['components']
+      # Simple variable substitution for LSB codename and OpenStack release
+      apt_components.each do | comp |
+        comp.gsub! '%release%', node['openstack']['release']
+        comp.gsub! '%codename%', node['lsb']['codename']
+      end
+      apt_repository 'openstack-ppa' do
+        uri node['openstack']['apt']['uri']
+        components apt_components
+      end
     end
   end
 when 'rhel'
-
   if node['openstack']['yum']['rdo_enabled']
     repo_action = :add
     include_recipe 'yum-epel'
