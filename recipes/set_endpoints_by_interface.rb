@@ -28,4 +28,12 @@ node['openstack']['endpoints'].keys.each do |component|
     ip_address = address node['openstack']['endpoints'][component]
     node.default['openstack']['endpoints'][component]['host'] = ip_address
   end
+  if node['openstack'][component]
+     node['openstack'][component].keys.each do |srv|
+        if node['openstack'][component][srv].is_a?(Hash) && node['openstack'][component][srv].has_key?("host")
+           node.default['openstack'][component][srv]['host'] = ip_address
+        end
+     end
+  end
 end
+
