@@ -183,6 +183,18 @@ default['openstack']['endpoints']['compute-api']['port'] = '8774'
 default['openstack']['endpoints']['compute-api']['path'] = '/v2/%(tenant_id)s'
 default['openstack']['endpoints']['compute-api']['bind_interface'] = nil
 
+default['openstack']['endpoints']['compute-admin']['host'] = node['openstack']['endpoints']['host']
+default['openstack']['endpoints']['compute-admin']['scheme'] = 'http'
+default['openstack']['endpoints']['compute-admin']['port'] = '8774'
+default['openstack']['endpoints']['compute-admin']['path'] = '/v2/%(tenant_id)s'
+default['openstack']['endpoints']['compute-admin']['bind_interface'] = nil
+
+default['openstack']['endpoints']['compute-api-internal']['host'] = node['openstack']['endpoints']['host']
+default['openstack']['endpoints']['compute-api-internal']['scheme'] = 'http'
+default['openstack']['endpoints']['compute-api-internal']['port'] = '8774'
+default['openstack']['endpoints']['compute-api-internal']['path'] = '/v2/%(tenant_id)s'
+default['openstack']['endpoints']['compute-api-internal']['bind_interface'] = nil
+
 # The OpenStack Compute (Nova) EC2 API endpoint
 default['openstack']['endpoints']['compute-ec2-api-bind']['host'] = node['openstack']['endpoints']['bind-host']
 default['openstack']['endpoints']['compute-ec2-api-bind']['port'] = '8773'
@@ -194,10 +206,11 @@ default['openstack']['endpoints']['compute-ec2-api']['port'] = '8773'
 default['openstack']['endpoints']['compute-ec2-api']['path'] = '/services/Cloud'
 default['openstack']['endpoints']['compute-ec2-api']['bind_interface'] = nil
 
-# The OpenStack Compute (Nova) EC2 Admin API endpoint
-default['openstack']['endpoints']['compute-ec2-admin-bind']['host'] = node['openstack']['endpoints']['bind-host']
-default['openstack']['endpoints']['compute-ec2-admin-bind']['port'] = '8773'
-default['openstack']['endpoints']['compute-ec2-admin-bind']['bind_interface'] = nil
+default['openstack']['endpoints']['compute-ec2-api-internal']['host'] = node['openstack']['endpoints']['host']
+default['openstack']['endpoints']['compute-ec2-api-internal']['scheme'] = 'http'
+default['openstack']['endpoints']['compute-ec2-api-internal']['port'] = '8773'
+default['openstack']['endpoints']['compute-ec2-api-internal']['path'] = '/services/Cloud'
+default['openstack']['endpoints']['compute-ec2-api-internal']['bind_interface'] = nil
 
 default['openstack']['endpoints']['compute-ec2-admin']['host'] = node['openstack']['endpoints']['host']
 default['openstack']['endpoints']['compute-ec2-admin']['scheme'] = 'http'
