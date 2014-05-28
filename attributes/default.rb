@@ -26,6 +26,11 @@ default['openstack']['common']['custom_template_banner'] = '
 # Do not edit, changes will be overwritten
 '
 
+# Read values from the databag
+default['openstack']['environment'] = node[:chef_environment]?node[:chef_environment]:"_default"
+default['openstack']['data_bag'] = 'openstack'
+default['openstack']['bag_config'] = 'config'
+
 # Setting this to True means that database passwords and service user
 # passwords for Keystone will be easy-to-remember values -- they will be
 # the same value as the key. For instance, if a cookbook calls the
@@ -81,7 +86,7 @@ default['openstack']['release'] = 'icehouse'
 # In the component strings, %codename% will be replaced by the value of
 # the node['lsb']['codename'] Ohai value and %release% will be replaced
 # by the value of node['openstack']['release']
-default['openstack']['apt']['live_updates_enabled'] = true
+default['openstack']['apt']['live_updates_enabled'] = false
 default['openstack']['apt']['uri'] = 'http://ubuntu-cloud.archive.canonical.com/ubuntu'
 default['openstack']['apt']['components'] = ["precise-updates/#{node['openstack']['release']}", 'main']
 # For the SRU packaging, use this:
@@ -407,7 +412,7 @@ end
 
 # Overriding this makes the ceph_client recipe do nothing
 # (set this when using the ceph/ceph-cookbooks cookbook).
-default['openstack']['ceph']['setup_client'] = true
+default['openstack']['ceph']['setup_client'] = false
 
 default['openstack']['ceph']['global'] = {
   fsid: '00000000-0000-0000-0000-000000000000',
