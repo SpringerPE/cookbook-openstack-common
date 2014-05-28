@@ -298,11 +298,11 @@ default['openstack']['endpoints']['image-api-internal']['port'] = '9292'
 default['openstack']['endpoints']['image-api-internal']['path'] = ''
 default['openstack']['endpoints']['image-api-internal']['bind_interface'] = nil
 
-default['openstack']['endpoints']['image-api-admin']['host'] = node['openstack']['endpoints']['host']
-default['openstack']['endpoints']['image-api-admin']['scheme'] = 'http'
-default['openstack']['endpoints']['image-api-admin']['port'] = '9292'
-default['openstack']['endpoints']['image-api-admin']['path'] = ''
-default['openstack']['endpoints']['image-api-admin']['bind_interface'] = nil
+default['openstack']['endpoints']['image-admin']['host'] = node['openstack']['endpoints']['host']
+default['openstack']['endpoints']['image-admin']['scheme'] = 'http'
+default['openstack']['endpoints']['image-admin']['port'] = '9292'
+default['openstack']['endpoints']['image-admin']['path'] = ''
+default['openstack']['endpoints']['image-admin']['bind_interface'] = nil
 
 # The OpenStack Image (Glance) Registry API endpoint
 default['openstack']['endpoints']['image-registry-bind']['host'] = node['openstack']['endpoints']['bind-host']
