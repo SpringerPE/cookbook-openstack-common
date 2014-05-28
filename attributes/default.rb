@@ -428,12 +428,19 @@ case node['platform_family']
 when 'rhel', 'suse'
   default['openstack']['common']['platform'] = {
     'common_client_packages' => ['python-openstackclient'],
-    'package_overrides' => ''
+    'package_overrides' => '',
+    'service_provider' => Chef::Provider::Service::Redhat
   }
 when 'debian'
+  if node['platform'] == 'ubuntu' && node['platform_version'] == '14.04'
+        service_provider = Chef::Provider::Service::Upstart
+  else
+	service_provider = Chef::Provider::Service::Debian
+  end
   default['openstack']['common']['platform'] = {
     'common_client_packages' => ['python-openstackclient'],
-    'package_overrides' => "-o Dpkg::Options::='--force-confold' -o Dpkg::Options::='--force-confdef'"
+    'package_overrides' => "-o Dpkg::Options::='--force-confold' -o Dpkg::Options::='--force-confdef'",
+    'service_provider' => service_provider
   }
 end
 
