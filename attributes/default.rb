@@ -416,6 +416,9 @@ default['openstack']['region'] = 'RegionOne'
 # Allowed auth API versions: v2.0 or v3.0. By default, it is set to v2.0.
 default['openstack']['api']['auth']['version'] = 'v2.0'
 
+# Nova API
+default['openstack']['api']['nova']['version'] = 'v2'
+
 # logging.conf list keypairs module_name => log level to write
 default['openstack']['logging']['ignore'] = { 'nova.api.openstack.wsgi' => 'WARNING',
                                               'nova.osapi_compute.wsgi.server' => 'WARNING' }
